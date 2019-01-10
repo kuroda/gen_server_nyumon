@@ -1,4 +1,4 @@
-[{pid, _}] = Registry.lookup(TestApp.ProcessRegistry, "ac")
+pid = AutoCounter.get_pid()
 
 GenServer.cast(pid, :increment)
 GenServer.cast(pid, :increment)

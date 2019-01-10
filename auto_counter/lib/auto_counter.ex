@@ -6,6 +6,11 @@ defmodule AutoCounter do
     GenServer.start_link(AutoCounter, [], name: name)
   end
 
+  def get_pid() do
+    [{pid, _}] = Registry.lookup(TestApp.ProcessRegistry, "ac")
+    pid
+  end
+
   def init(_) do
     Process.send_after(self(), :auto_increment, 1_000)
     {:ok, 0}

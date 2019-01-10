@@ -6,6 +6,11 @@ defmodule K do
     GenServer.start_link(K, [], name: name)
   end
 
+  def get_pid() do
+    [{pid, _}] = Registry.lookup(TestApp.ProcessRegistry, "k")
+    pid
+  end
+
   def init(_) do
     {:ok, 0}
   end
