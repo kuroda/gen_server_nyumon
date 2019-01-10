@@ -1,6 +1,11 @@
 defmodule K do
   use GenServer
 
+  def start_link() do
+    name = {:via, Registry, {TestApp.ProcessRegistry, "k"}}
+    GenServer.start_link(K, [], name: name)
+  end
+
   def init(_) do
     {:ok, 0}
   end
